@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 10;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            padding: 20px;
+        }
+
+        .grid-item {
+            background-color: #3498db;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+  <h1> Heat Discard Pile Counter</h1>
+  <button id="resetButton">Reset</button>
+
+    <div class="grid-container">
+        <div class="grid-item" onclick="changeColor(this)">1</div>
+        <div class="grid-item" onclick="changeColor(this)">1</div>
+        <div class="grid-item" onclick="changeColor(this)">1</div>
+        <div class="grid-item" onclick="changeColor(this)">2</div>
+        <div class="grid-item" onclick="changeColor(this)">2</div>
+        <div class="grid-item" onclick="changeColor(this)">2</div>
+        <div class="grid-item" onclick="changeColor(this)">3</div>
+        <div class="grid-item" onclick="changeColor(this)">3</div>
+        <div class="grid-item" onclick="changeColor(this)">3</div>
+        <div class="grid-item" onclick="changeColor(this)">4</div>
+        <div class="grid-item" onclick="changeColor(this)">4</div>
+        <div class="grid-item" onclick="changeColor(this)">4</div>
+    </div>
+
+    <script>
+        function changeColor(element) {
+            var backgroundColor = window.getComputedStyle(element).backgroundColor;
+            var hexColor = rgbToHex(backgroundColor);
+            console.log('Background Color:', backgroundColor);
+            if (hexColor == "#bdc3c7") {
+              element.style.backgroundColor = "#3498db";
+            } else {
+              element.style.backgroundColor = "#bdc3c7";
+            }
+        }
+
+        function rgbToHex(rgbColor) {
+            // Convert RGB to Hex
+            var rgbValues = rgbColor.match(/\d+/g);
+            var hex = '#' + 
+                      ('0' + parseInt(rgbValues[0], 10).toString(16)).slice(-2) +
+                      ('0' + parseInt(rgbValues[1], 10).toString(16)).slice(-2) +
+                      ('0' + parseInt(rgbValues[2], 10).toString(16)).slice(-2);
+            return hex;
+        }
+
+        function changeBackgroundColor() {
+            var elements = document.querySelectorAll('.grid-item');
+
+            elements.forEach(function (element) {
+                element.style.backgroundColor = "#3498db";
+            });
+        }
+
+        // Attach an event listener to the button
+        document.getElementById('resetButton').addEventListener('click', changeBackgroundColor);
+    </script>
+
+</body>
+</html>
